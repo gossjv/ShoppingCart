@@ -31,11 +31,8 @@ class ProductListViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-//        recargar todas las cosas porque aqui es cuando la pantalla YA se presento
-        productListTableView.reloadData()
+                productListTableView.reloadData()
     }
-    
     
     func createDummyProducts() -> [Product] {
         
@@ -44,7 +41,6 @@ class ProductListViewController: UIViewController {
         products.append(.init(id: "3",name: "Pizza", price: 6, stock: 6))
         products.append(.init(id: "4",name: "Chori", price: 3, stock: 6))
         products.append(.init(id: "5",name: "Coke", price: 1, stock: 6))
-
         return products
     }
     
@@ -80,29 +76,19 @@ class ProductListViewController: UIViewController {
         guard let productIndex = products.firstIndex(where: { $0.ID == selectedProduct.ID }) else {
             return
         }
-
         if selectedProduct.stock == 0 {
-            let indexPaths = IndexPath(row: productIndex, section: 0)
-            
-//            productListTableView.beginUpdates()
-            
             products.remove(at: productIndex)
             productListTableView.reloadData()
-//            productListTableView.deleteRows(at: [indexPaths], with: .automatic)
-            
-//            productListTableView.endUpdates()
         }
         return
     }
     
     @IBAction func shoppingCartTapButton(_ sender: Any) {
-    }
-    
+        }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if let ShoppingCart = segue.destination as? ShoppingCartViewController {
-                ShoppingCart.productsInCart = shoppingCartList
-            }
-        
+        if let ShoppingCart = segue.destination as? ShoppingCartViewController {
+            ShoppingCart.productsInCart = shoppingCartList
+        }
     }
 }
 
@@ -123,8 +109,7 @@ extension ProductListViewController: UITableViewDataSource, UITableViewDelegate 
 
 extension ProductListViewController: Buyable {
    
-    
-    func buy(_ product: Product) {
+        func buy(_ product: Product) {
         addProduct(product, count: 1)
         setStockData(product)
         setTotalAndPriceLabel(product)

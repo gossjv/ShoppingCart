@@ -27,11 +27,9 @@ class ProductListTableViewCell: UITableViewCell {
         productStockCounterLabel.text = "\(product.stock)"
         self.seletedProduct = product
         self.buyDelegate = delegate
-        
     }
     
     @IBAction func buyProductTapBotton(_ sender: Any) {
-        
         buyDelegate?.buy(seletedProduct!)
     }
 

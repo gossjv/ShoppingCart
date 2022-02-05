@@ -9,7 +9,6 @@ import Foundation
 
 protocol Buyable: class {
     func buy(_ product: Product)
-//    func UnBuy(_ product: ProductInCart)
 }
 
 

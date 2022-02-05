@@ -14,8 +14,7 @@ class ProductInCart {
     var total: Int {
         selectedProduct.price * count
     }
-//    weak var buyDelegate: Buyable?
-
+    
     init(_ product: Product, count: Int) {
         selectedProduct = product
         self.count = count

@@ -19,11 +19,9 @@ class ShoppingCartViewController: UIViewController {
         shoppingCartListTableView.dataSource = self
         let cellNib = UINib(nibName: String(describing: ShoppingCartTableViewCell.self), bundle: nil)
         shoppingCartListTableView.register(cellNib, forCellReuseIdentifier: "shoppingcartcell")
-        print(productsInCart.count)
     }
     
     func setCellData(_ product: ProductInCart) {
-//        shoppingCartListTableView.beginUpdates()
         
         if let productToDelete = productsInCart.first(where: { $0.selectedProduct.ID == product.selectedProduct.ID}){
             if productToDelete.count >= 1 {
@@ -36,13 +34,9 @@ class ShoppingCartViewController: UIViewController {
                     return
                 }
                 let indexPaths = [IndexPath(row: productIndex, section: 0)]
-                    
-                shoppingCartListTableView.beginUpdates()
-                    
                 productsInCart.remove(at: productIndex)
                 shoppingCartListTableView.deleteRows(at: indexPaths, with: .automatic)
-                    
-                shoppingCartListTableView.endUpdates()
+                shoppingCartListTableView.reloadData()
             }
         }
     }
@@ -63,7 +57,5 @@ extension ShoppingCartViewController: UITableViewDataSource {
 extension ShoppingCartViewController: DeleteProduct {
     func deletedProduct(_ product: ProductInCart) {
         setCellData(product)
-//        deletedProductsList(product)
-        print(deletedProducts.count)
     }
 }
